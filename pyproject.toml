@@ -2,7 +2,7 @@
 authors = ["long2ice <long2ice@gmail.com>"]
 description = "A fast admin dashboard based on FastAPI and TortoiseORM with tabler ui, inspired by Django admin."
 documentation = "https://fastapi-admin.github.io"
-homepage = "https://github.com/fastapi-admin/fastapi-admin"
+homepage = "https://github.com/fastapi-admin/fastapi-admin-pro"
 include = [
     "LICENSE",
     "README.md",
@@ -10,27 +10,31 @@ include = [
     "fastapi_admin/locales/en_US/LC_MESSAGES/messages.mo",
     "fastapi_admin/locales/zh_CN/LC_MESSAGES/messages.mo"
 ]
-keywords = ["fastapi", "admin", "dashboard", "tortoise-orm"]
+keywords = ["admin", "dashboard", "fastapi", "tortoise-orm", "tabler"]
 license = "Apache-2.0"
-name = "fastapi-admin"
+name = "fastapi-admin-pro"
 packages = [
     { include = "fastapi_admin" },
 ]
 readme = "README.md"
-repository = "https://github.com/fastapi-admin/fastapi-admin.git"
-version = "1.0.4"
+repository = "https://github.com/fastapi-admin/fastapi-admin-pro.git"
+version = "0.1.4"
 
 [tool.poetry.dependencies]
 Babel = "*"
+aiobotocore = { version = "*", optional = true }
 aiofiles = "*"
 aioredis = "*"
+asyncoss = { version = "*", optional = true }
 bcrypt = "*"
+captcha = "*"
 fastapi = "*"
 jinja2 = "*"
 python = "^3.7"
 python-multipart = "*"
 tortoise-orm = "*"
 uvicorn = { version = "*", extras = ["standard"] }
+httpx = "*"
 pendulum = "*"
 
 [tool.poetry.dev-dependencies]
@@ -46,10 +50,15 @@ isort = "*"
 mypy = "*"
 pylint = "*"
 # example
-asyncmy = "*"
-asyncpg = "*"
+asyncmy = { git = "https://github.com/long2ice/asyncmy.git", branch = "dev" }
 python-dotenv = "*"
+rearq = { git = "https://github.com/long2ice/rearq.git", branch = "dev" }
+asyncpg = "*"
 
 [build-system]
 build-backend = "poetry.core.masonry.api"
 requires = ["poetry-core>=1.0.0"]
+
+[tool.poetry.extras]
+oss = ["asyncoss"]
+s3 = ["aiobotocore"]
